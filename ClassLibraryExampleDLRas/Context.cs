@@ -5,16 +5,20 @@ namespace ClassLibraryExampleDLRas
 {
     public class Context : DbContext
     {
-        public Context(string connectionString) : base(GetOptions(connectionString))
-        {
-            
+
+            private readonly string _connectionString;
+
+            public Context(string connectionString)
+            {
+                _connectionString = connectionString;
+            }
+
+            protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+            {
+                optionsBuilder.UseSqlServer(_connectionString);
+            }
         }
 
-
-        private static DbContextOptions GetOptions(string connectionString)
-        {
-            return SqlServerDbContextOptionsExtensions.UseSqlServer(new DbContextOptionsBuilder(), connectionString).Options;
-        }
 
     }
 }
