@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace ClassLibraryExampleDLRas.Repository
 {
-    internal class Repository : IRepository
+    public class Repository 
     {
+      
     }
 }
